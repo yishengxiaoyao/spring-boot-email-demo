@@ -1,6 +1,9 @@
 package com.edu.springboot.controller;
 
+import com.edu.springboot.model.SendEmailLog;
+import com.edu.springboot.repository.SendEmailLogRepository;
 import com.edu.springboot.service.IMailService;
+import com.edu.springboot.service.SendEmailLogService;
 import com.edu.springboot.vo.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,16 +11,28 @@ import org.springframework.web.bind.annotation.RestController;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
+import java.util.Date;
+
 @RestController
 public class EmailController {
     @Autowired
     private IMailService mailService;
     @Autowired
     private TemplateEngine templateEngine;
+    @Autowired
+    private SendEmailLogService sendEmailLogService;
+
     @RequestMapping("/simpleEmail")
     public JsonResult index(){
         try {
             mailService.sendSimpleMail("644875343@qq.com","SpringBoot Email","这是一封普通的SpringBoot测试邮件");
+            SendEmailLog sendEmailLog = new SendEmailLog();
+            sendEmailLog.setUserId(1L);
+            sendEmailLog.setContent("send email log test");
+            sendEmailLog.setEmail("644875343@qq.com");
+            sendEmailLog.setCreateTime(new Date());
+            sendEmailLog.setStatus(1);
+            sendEmailLogService.save(sendEmailLog);
         }catch (Exception ex){
             ex.printStackTrace();
             return new JsonResult(-1,"邮件发送失败!!");

@@ -4,15 +4,15 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: xxx@xxx.com
-    password: password
+    username: noreply@truckerpath.com
+    password: DoWk8pHbUieDUyMRXQxH
     properties:
       mail:
         smtp:
           auth: true
           starttls:
             enable: true
-        from: yishengxiaoyao@xiaoyao.com
+        from: yishengxiaoyao@github.com
         display:
           sendmail: xiaoyao
           sendname: xiaoyao
@@ -27,3 +27,5 @@ spring:
     username: root
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    show-sql: true
