@@ -16,8 +16,6 @@ spring:
         display:
           sendmail: xiaoyao
           sendname: xiaoyao
-        ssl:
-          enable: true
     protocol: smtp
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
